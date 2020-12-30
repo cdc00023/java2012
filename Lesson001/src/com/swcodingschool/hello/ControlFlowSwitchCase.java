@@ -15,7 +15,7 @@ public class ControlFlowSwitchCase {
 
 	public static void main(String[] args) {
 		// 필요한 변수 선언
-		String winner = "";
+		String winner = "";//Referece Datetype
 		Random  rd = new Random();    // random number
 		int comGame = rd.nextInt(2)+1; // 0~2사이의 수 생성 + 1 : 1~3사이의 수 생성
 		Scanner sc = new Scanner(System.in);
