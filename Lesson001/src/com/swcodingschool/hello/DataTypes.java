@@ -24,9 +24,9 @@ package com.swcodingschool.hello;
  *          default value is 0L
  *   float : 32bit. default value is 0.0f
  *   double : 64-bit. 0.0d
- *   boolean : one bit of information (t/f)
+ *   boolean : one bit of information
  *   
- * 2. Reference Datatypes
+ * 2. Reference/Object Datatypes
  *    Reference variables are created using defined constructors of the classes. 
  *    They are used to access objects.
  * 
@@ -50,7 +50,6 @@ public class DataTypes {
 		// 최대수에 1 더한 후 출력하기
 		shortint++;
 		System.out.println(shortint);
-		
 		
 		
 	}// end of main

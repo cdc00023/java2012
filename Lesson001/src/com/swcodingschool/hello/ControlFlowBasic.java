@@ -28,6 +28,5 @@ public class ControlFlowBasic {
 		System.out.printf("%d시: 휴식%n",time);
 		time++;
 		System.out.printf("%d시: 취침%n",time);
-		
 	}//end of main
 }//end of class

@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class ExIf_FindOddEven {
 
 	public static void main(String[] args) {
-		// 메시지를 주어 임의 수를 입력하도록 안내한다.\
+		// 메시지를 주어 임의 수를 입력하도록 안내한다.
 		System.out.println("임의 수를 입력하세요 :");
 		Scanner sc = new Scanner(System.in);
 		int number = sc.nextInt();
