@@ -14,11 +14,17 @@ public class QuizStaticTest {
 		QuizStaticStore store1 = QuizStaticStore.getInstance();
 		QuizStaticStore store2 = QuizStaticStore.getInstance();
 		System.out.println(store1 == store2);
+		
+		QuizStaticGuest gtJames = new QuizStaticGuest("제임스", 10000);
+		QuizStaticGuest gtudentTomas = new QuizStaticGuest("토마스", 20000);
+		//고객
+		
+		
+		//고객이 물건을 삼
+		
+		
+		
+		//고객의 돈과 가게의 돈을 확인
 	}
 
-	
-	
-	
-	
-	
 }//end of class QuizStatic

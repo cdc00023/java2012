@@ -7,8 +7,8 @@ public class QuizStaticGuest {
 	public int storeMoney;
 	
 	public static int sirialNum = 100;
-	static int getserialNum() {
-		return serialNum;
+	public static int getserialNum() {
+		return sirialNum;
 	}
 	
 
@@ -25,10 +25,6 @@ public class QuizStaticGuest {
 	public void takeOffStore(QuizStaticStore store) {
 		store.takeOffStore();
 	}
-	
-	QuizStaticGuest Guest1 = new QuizStaticGuest("철수", 10000);
-	QuizStaticGuest Guest2 = new QuizStaticGuest("영희", 20000);
-	
 	
 	
 	
