@@ -7,7 +7,7 @@ public class TwoDimension2 {
 		int[][] arr = new int[2][3]; //2행3열
 		
 		for(int i = 0; i < arr.length; i++) { //행 길이
-			for(int j = 0; j < arr.length; j++) { //열 길이
+			for(int j = 0; j < arr[i].length; j++) { //열 길이
 				System.out.println(arr[i][j]);
 			}
 			System.out.println( );
