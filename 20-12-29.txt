@@ -1,0 +1,41 @@
+12/29 (1/40)
+프레임워크활용 클라우드 기반 마이크로서비스 개발과정
+-자바 프로그래밍 언어
+-데이터베이스(SQL 활용)
+-화면구현(UI(유저 인터페이스)/ UX 설계 결과물을 html5, css3, js, jquery, m query - Bootstrap사용 / awt(자바), swing, fx에서 구현)
+-프레임워크 활용 - 웹애플리케이션 개발
+(http프로토콜, 장고(pyton), 
+ Spring Framework5(java) - Spring Boot2
+(정부)e-gov Framework
+-클라우드 환경으로 가져오기
+AWS(아마존), Google, 
+-마이크로 서비스
+
+------------
+GIT HUB(github.com)
+마크다운 파일 기본문법
+찾아서 홈페이지 꾸며보자
+C:\github\javatest (이클립스 github연동)
+
+1.글꼴설정,utf8
+2.자바프로젝트
+3.open 프로스펙티브
+-자바, 디버그, 깃 추가
+4.패키지 com.example.hello
+클래스 퍼블릭 스테틱 체크
+5.자바폴더 오른쪽 클릭 - team - share -use체크 -create - finish
+6.git탭으로 들어가기
+아래 git staging 여기서 추가할수있다
+스테이지 올리기
+add git (C:\github\javatest)
+
+---------
+github 데스크탑 다운(https://desktop.github.com/)
+
+github ignore 설정
+프로젝트 버전관리를 할 때 불필요한 파일들은 Github에 업로드하지 말아야 하는데, 이럴 경우 gitignore 설정을 해주면 된다
+
+https://www.toptal.com/developers/gitignore
+WINDOWS, ECLIPSE,JAVA 생성
+여기서 긁어서 .gitignore 파일만들기
+(해당폴더 상위에 저장한다)
