@@ -18,8 +18,8 @@ public class CustomerTest {
 		System.out.println(customerLee.showCustomerInfo());
 		System.out.println(customerKim.showCustomerInfo());
 		
-		customerLee.calcPrice(10000);
-		customerKim.calcPrice(10000);
+		System.out.println("Lee의 지불 금액 : " + customerLee.calcPrice(10000));
+		System.out.println("Kim의 지불 금액 : " + customerKim.calcPrice(10000));
 		
 		System.out.println(customerLee.showCustomerInfo());
 		System.out.println(customerKim.showCustomerInfo());

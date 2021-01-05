@@ -90,6 +90,7 @@ protected int calcPrice(int price) {
 	bonusPoint += price * bonusRatio;
 	return price;
 }
+
 protected String showCustomerInfo() {
 	return customerID + customerName + "님의 등급은"
 			+ customerGrade + "이며, \n보너스 포인트는"

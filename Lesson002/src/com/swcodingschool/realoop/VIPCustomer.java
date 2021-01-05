@@ -10,6 +10,15 @@ public class VIPCustomer extends Customer {
 		saleRatio = 0.1;
 		System.out.println("VIPCustomer 생성자 동작...");
 	}
+	
+	@Override
+	protected int calcPrice(int price) {
+		// 
+		// return super.calcPrice(price);
+		bonusPoint += price * bonusRatio;
+		return price - (int)(price * saleRatio);
+	}
+
 	public int getAgentID() {
 		return agentID;
 	}
