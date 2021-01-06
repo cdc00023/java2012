@@ -14,7 +14,7 @@ public class CompleteCalc extends Calculator {
 		if(num2 != 0) return (num1/num2);
 		else return Calc.ERROR;
 	}
-	public void showInfo { 
+	public void showInfo() { 
 		System.out.println("Calc 인터페이스를 구현하였습니다.");
 	}
 	

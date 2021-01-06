@@ -10,10 +10,13 @@ public class CalculatorTest {
 		int num1 = 10, num2 = 5;
 		CompleteCalc c = new CompleteCalc();
 		System.out.println(c.add(num1, num2));
+		System.out.println(c.substract(num1, num2));
+		System.out.println(c.tims(num1, num2));
+		System.out.println(c.divide(num1, num2));
 		
 		c.showInfo();
 		
-
+	
 	}
 
 }
