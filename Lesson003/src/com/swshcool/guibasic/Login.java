@@ -1,18 +1,20 @@
 package com.swshcool.guibasic;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 public class Login extends JFrame {
 
@@ -27,8 +29,8 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//데이터베이스 연결
-					if(DBUtil.dbconn == null)DBUtil.DBCConnect(); //인스턴스 안해도 씀dbconn
+					// 데이터베이스연결
+					if(DBUtil.dbconn == null)DBUtil.DBConnect();
 					
 					Login frame = new Login();
 					frame.setVisible(true);
@@ -54,41 +56,77 @@ public class Login extends JFrame {
 		JLabel lblNewLabel = new JLabel("Simple Login Demo");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 20));
-		lblNewLabel.setBounds(101, 28, 231, 44);
+		lblNewLabel.setBounds(87, 21, 259, 40);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("USER ID");
-		lblNewLabel_1.setBounds(78, 106, 57, 15);
+		JLabel lblNewLabel_1 = new JLabel("UserID");
+		lblNewLabel_1.setBounds(97, 97, 57, 15);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("PASSWORD");
-		lblNewLabel_2.setBounds(78, 131, 67, 15);
+		JLabel lblNewLabel_2 = new JLabel("Password");
+		lblNewLabel_2.setBounds(97, 137, 57, 15);
 		contentPane.add(lblNewLabel_2);
 		
 		txtUserID = new JTextField();
-		txtUserID.setBounds(157, 103, 116, 21);
+		txtUserID.setBounds(182, 94, 164, 21);
 		contentPane.add(txtUserID);
 		txtUserID.setColumns(20);
 		
 		txtUserPWD = new JTextField();
-		txtUserPWD.setBounds(157, 128, 116, 21);
+		txtUserPWD.setBounds(182, 134, 164, 21);
 		contentPane.add(txtUserPWD);
 		txtUserPWD.setColumns(20);
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//데이터 베이스 연결
-				if(DBUtil.dbconn == null)DBUtil.DBCConnect();
+				// 데이터베이스연결
+				if(DBUtil.dbconn == null)DBUtil.DBConnect();
+				// 입력된 유저아이디와 비밀번호를 가져온다.
 				String userid = txtUserID.getText();
 				String userpwd = txtUserPWD.getText();
-				//유저아이디와 비밀번호를 사용, 데이터베이스연결을 시도
-				System.out.println("[MyMGS]데이터베이스 연결에 실패하였습니다.");
+				// 입력된 아이디와 비번확인
+				//System.out.println(userid);
+				//System.out.println(userpwd);
+				
+				// 유저아이디와 비밀번호를 사용하여 데이터베이스 조회
+				// SELECT 속성리스트[*를 사용하면 모든속성(ALL)]
+				// FROM 테이블 이름
+				// WHERE 조건
+				
+				// sql 구문 구성 (데이터베이스로부터 임의의 내용을 조회)
+				String sql = "SELECT * FROM tbluser WHERE userid=? AND userpwd=?";
 				
 				
+				try {
+					// prepared statement는 sql 구문을 좀더 단순하게 구성할 수 있도록 한다.
+					PreparedStatement pstmt = DBUtil.dbconn.prepareStatement(sql);
+					pstmt.setString(1, userid); // userid 변수값으로 sql구문의 첫번째 ? 에 대입
+					pstmt.setString(2, userpwd);// userpwd 변수값으로 sql구문의 두번째 ? 에 대입
+					
+					// 최종 완성된 질의구문을 실행하고 그 결과를 ResultSet으로 받아온다.
+					ResultSet rs = pstmt.executeQuery();
+					
+					// resultset rs내에는 검색된 결과값들이 들어있는데...
+					if(rs.next()) { // 해당 계정이 있으면, 정상 로그인
+						rs.close();
+						pstmt.close();
+						//System.out.println("로그인성공");
+						//Application을 띄워준다
+						//로그인창을 닫고(dispose)
+						dispose();
+						AppHome apphome = new AppHome(); //새 프레임을 생성하고
+						apphome.setVisible(true); //프레임을 보이게 함
+					}else {// 해당 계정이 없음
+						System.out.println("아이디와 비번을 다시 확인해주세요.");
+					}
+				}catch(SQLException elogin) {
+					System.out.println("[MyMSG]SQL Exception Error : " + elogin.getMessage());
+					elogin.printStackTrace();
+				}
 			}
 		});
-		btnLogin.setBounds(282, 102, 77, 47);
+		btnLogin.setBounds(249, 180, 97, 23);
 		contentPane.add(btnLogin);
 	}
 }
