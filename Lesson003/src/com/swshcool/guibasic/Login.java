@@ -15,12 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtUserID;
-	private JTextField txtUserPWD;
+	private JTextField txtUserName;
+	private JPasswordField txtUserPWD;
 
 	/**
 	 * Launch the application.
@@ -59,23 +60,18 @@ public class Login extends JFrame {
 		lblNewLabel.setBounds(87, 21, 259, 40);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("UserID");
-		lblNewLabel_1.setBounds(97, 97, 57, 15);
+		JLabel lblNewLabel_1 = new JLabel("User Name");
+		lblNewLabel_1.setBounds(97, 97, 73, 15);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Password");
-		lblNewLabel_2.setBounds(97, 137, 57, 15);
+		lblNewLabel_2.setBounds(97, 137, 73, 15);
 		contentPane.add(lblNewLabel_2);
 		
-		txtUserID = new JTextField();
-		txtUserID.setBounds(182, 94, 164, 21);
-		contentPane.add(txtUserID);
-		txtUserID.setColumns(20);
-		
-		txtUserPWD = new JTextField();
-		txtUserPWD.setBounds(182, 134, 164, 21);
-		contentPane.add(txtUserPWD);
-		txtUserPWD.setColumns(20);
+		txtUserName = new JTextField();
+		txtUserName.setBounds(182, 94, 164, 21);
+		contentPane.add(txtUserName);
+		txtUserName.setColumns(23);
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
@@ -83,8 +79,8 @@ public class Login extends JFrame {
 				// 데이터베이스연결
 				if(DBUtil.dbconn == null)DBUtil.DBConnect();
 				// 입력된 유저아이디와 비밀번호를 가져온다.
-				String userid = txtUserID.getText();
-				String userpwd = txtUserPWD.getText();
+				String username = txtUserName.getText();
+				String userpwd = new String (txtUserPWD.getPassword());
 				// 입력된 아이디와 비번확인
 				//System.out.println(userid);
 				//System.out.println(userpwd);
@@ -101,7 +97,7 @@ public class Login extends JFrame {
 				try {
 					// prepared statement는 sql 구문을 좀더 단순하게 구성할 수 있도록 한다.
 					PreparedStatement pstmt = DBUtil.dbconn.prepareStatement(sql);
-					pstmt.setString(1, userid); // userid 변수값으로 sql구문의 첫번째 ? 에 대입
+					pstmt.setString(1, username); // userid 변수값으로 sql구문의 첫번째 ? 에 대입
 					pstmt.setString(2, userpwd);// userpwd 변수값으로 sql구문의 두번째 ? 에 대입
 					
 					// 최종 완성된 질의구문을 실행하고 그 결과를 ResultSet으로 받아온다.
@@ -128,5 +124,21 @@ public class Login extends JFrame {
 		});
 		btnLogin.setBounds(249, 180, 97, 23);
 		contentPane.add(btnLogin);
+		
+		txtUserPWD = new JPasswordField();
+		txtUserPWD.setColumns(23);
+		txtUserPWD.setBounds(182, 134, 164, 21);
+		contentPane.add(txtUserPWD);
+		
+		JButton btnJoin = new JButton("Join");
+		btnJoin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();//현재 프레임(창) 닫고 새 프레임으로 넘어감
+				Join join = new Join(); //새 창 객체 생성
+				join.setVisible(true);//새 창 객체를 보이도록
+			}
+		});
+		btnJoin.setBounds(140, 180, 97, 23);
+		contentPane.add(btnJoin);
 	}
 }

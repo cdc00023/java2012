@@ -474,3 +474,154 @@ FROM
 WHERE
     country = 'USA' AND 
     state = 'CA';
+    
+    
+/*PRACTISE*/
+create database helloSQL;
+show databases;
+use helloSQL;
+show tables;
+create table foods
+(
+id int not null auto_increment,
+product varchar(100) not null,
+primary key(id)
+);
+desc foods;
+
+create table menu
+(
+id int not null auto_increment,
+menu varchar(100) not null,
+product_id int,
+primary key (id),
+foreign key (product_id) references foods (id)
+);
+desc foods;    
+
+show databases;
+select database();
+use classicmodels;
+
+use testdb;
+select database();
+drop database if exists testdb; 
+
+use classicmodels;
+DESCRIBE tasks;
+
+CREATE TABLE IF NOT EXISTS checklists (
+    todo_id INT AUTO_INCREMENT,
+    task_id INT,
+    todo VARCHAR(255) NOT NULL,
+    is_completed BOOLEAN NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (todo_id , task_id),
+    FOREIGN KEY (task_id)
+        REFERENCES tasks (task_id)
+        ON UPDATE RESTRICT ON DELETE CASCADE
+);
+
+
+SET autocommit = 0;
+SET autocommit = 1;
+
+set autocommit = 0;
+start transaction;
+
+SELECT 
+    @orderNumber:=MAX(orderNUmber)+1
+FROM
+    orders;
+
+INSERT INTO orders(orderNumber,
+                   orderDate,
+                   requiredDate,
+                   shippedDate,
+                   status,
+                   customerNumber)
+VALUES(@orderNumber,
+       '2005-05-31',
+       '2005-06-10',
+       '2005-06-11',
+       'In Process',
+        145);
+
+INSERT INTO orderdetails(orderNumber,
+                         productCode,
+                         quantityOrdered,
+                         priceEach,
+                         orderLineNumber)
+VALUES(@orderNumber,'S18_1749', 30, '136', 1),
+      (@orderNumber,'S18_2248', 50, '55.09', 2); 
+
+COMMIT; /*롤백을 해도 못돌림*/
+
+/*취소하기 위해선 delete써야함*/
+
+set autocommit = 1;
+
+SELECT 
+    a.orderNumber,
+    orderDate,
+    requiredDate,
+    shippedDate,
+    status,
+    comments,
+    customerNumber,
+    orderLineNumber,
+    productCode,
+    quantityOrdered,
+    priceEach
+FROM
+    orders a
+        INNER JOIN
+    orderdetails b USING (orderNumber)
+WHERE
+    a.ordernumber = 10426;
+
+
+CREATE TABLE messages ( 
+    id INT NOT NULL AUTO_INCREMENT, 
+    message VARCHAR(100) NOT NULL, 
+    PRIMARY KEY (id) 
+);
+
+
+SELECT CONNECTION_ID();
+
+INSERT INTO messages(message) 
+VALUES('Hello');
+
+SELECT * FROM messages;
+
+LOCK TABLE messages READ;
+
+INSERT INTO messages(message) 
+VALUES('Hi');
+
+SELECT * FROM messages;
+
+SELECT CONNECTION_ID();
+
+UNLOCK TABLES;
+
+SELECT * FROM messages;
+
+LOCK TABLE messages WRITE;
+INSERT INTO messages(message) 
+VALUES('hey');
+
+SELECT * FROM messages;
+
+UNLOCK TABLES;
+
+SELECT * FROM messages;
+
+SELECT 
+    employeeNumber, 
+    lastName, 
+    firstName
+FROM
+    employees
+WHERE
+    jobTitle = 'Sales Rep';
