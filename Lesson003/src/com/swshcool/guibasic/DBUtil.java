@@ -9,13 +9,14 @@ import java.sql.SQLException;
  */
 public class DBUtil {
 	static final String JDBCDRV = "com.mysql.cj.jdbc.Driver";
-	static final String URL = "jdbc:mysql//localhost:3306/javadb";
+	static final String URL = "jdbc:mysql://localhost:3306/javadb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	static final String DBUSER = "java";
 	static final String DBPASSWORD = "1234";
 	
+	
 	static Connection dbconn = null; //컨트롤 쉬프트 o, 자바 엔트롤 커넥션
 	
-	public static void DBCConnect() {
+	public static void DBConnect() {
 		try {
 			//step1. 드라이버 로드
 			Class.forName(JDBCDRV);
