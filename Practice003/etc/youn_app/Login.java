@@ -1,4 +1,4 @@
-package com.swshcool.guibasic;
+package com.swshcool.youn_guibasic;
 
 import java.awt.EventQueue;
 import java.awt.Font;

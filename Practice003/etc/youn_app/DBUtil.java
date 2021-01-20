@@ -1,4 +1,4 @@
-package com.swshcool.guibasic;
+package com.swshcool.youn_guibasic;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

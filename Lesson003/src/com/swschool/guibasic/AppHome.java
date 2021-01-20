@@ -1,4 +1,4 @@
-package com.swshcool.guibasic;
+package com.swschool.guibasic;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
